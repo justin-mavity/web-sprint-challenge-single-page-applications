@@ -7,10 +7,12 @@ export default function OrderDetails({ details }) {
 
   return (
     <div className="pizza container">
-      <h2>Order Details</h2>
-      <p>Size:{details.size}</p>
-      <p>Toppings: {details.toppings}</p>
-      <p>Instructions: {details.instructions}</p>
+      <h2>{details.name}</h2>
+      <div>
+        <p>Size:{details.size}</p>
+        <p>Toppings: {details.toppings.join(", ")}</p>
+        <p>Instructions: {details.instructions}</p>
+      </div>
     </div>
   );
 }
