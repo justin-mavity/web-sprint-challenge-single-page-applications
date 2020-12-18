@@ -1,22 +1,5 @@
 import React from "react";
-import styled from "styled-components";
-
-const StyledInputs = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const StyledToppings = styled.div`
-  display: flex;
-  flex-flow: column wrap;
-  width: 30%;
-  height: 20vh;
-  margin: 0 35% 5% 35%;
-`;
-
-const StyledLabel = styled.label`
-  margin: 2% 0;
-`;
+import { Col, Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 export default function PizzaForm(props) {
   const { values, submit, update, disabled, errors } = props;
@@ -42,102 +25,104 @@ export default function PizzaForm(props) {
         </div>
       </header>
       <form className="form contanier" onSubmit={onSubmit}>
-        <StyledInputs>
-          {/*///Text Input///*/}
-          <StyledLabel>
-            Name on order
-            <input
-              type="text"
-              name="name"
-              onChange={onChange}
-              placeholder="Name"
-              minLength="2"
-            />
-          </StyledLabel>
-          {/*///Dropdown for size///*/}
-          <label>
-            Choice of size
-            <select name="size" value={values.size} onChange={onChange}>
-              <option value="">---Select a size---</option>
-              <option value="small">Small</option>
-              <option value="medium">Medium</option>
-              <option value="large">Large</option>
-            </select>
-          </label>
-          <div className="toppings-checklist">
-            <h4>Toppings</h4>
-            <StyledToppings>
-              <label>
-                Pepperoni
-                <input
-                  type="checkbox"
-                  name="pepperoni"
-                  checked={values.pepperoni}
-                  onChange={onChange}
-                />
-              </label>
-              <label>
-                Extra Cheese
-                <input
-                  type="checkbox"
-                  name="extraCheese"
-                  checked={values.extraCheese}
-                  onChange={onChange}
-                />
-              </label>
-              <label>
-                Onions
-                <input
-                  type="checkbox"
-                  name="onions"
-                  checked={values.onions}
-                  onChange={onChange}
-                />
-              </label>
-              <label>
-                Green Peppers
-                <input
-                  type="checkbox"
-                  name="greenPeppers"
-                  checked={values.greenPeppers}
-                  onChange={onChange}
-                />
-              </label>
-              <label>
-                Black Olives
-                <input
-                  type="checkbox"
-                  name="blackOlives"
-                  checked={values.blackOlives}
-                  onChange={onChange}
-                />
-              </label>
-              <label>
-                Mushrooms
-                <input
-                  type="checkbox"
-                  name="mushrooms"
-                  checked={values.mushrooms}
-                  onChange={onChange}
-                />
-              </label>
-            </StyledToppings>
-          </div>
-          <div className="instructions">
-            <StyledLabel>
-              Special Instruction
-              <input
+        <Form>
+          <FormGroup>
+            {/*///Text Input///*/}
+            <Label for="order-name">
+              Name on order
+              <Input
                 type="text"
-                name="instructions"
-                value={values.instructions}
+                name="name"
+                onChange={onChange}
+                placeholder="Name"
+                minLength="2"
+              />
+            </Label>
+          </FormGroup>
+          {/*///Dropdown for size///*/}
+          <FormGroup>
+            <Label for="size">
+              Choice of size
+              <select
+                type="select"
+                name="size"
+                value={values.size}
+                onChange={onChange}
+              >
+                <option value="">---Select a size---</option>
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+              </select>
+            </Label>
+          </FormGroup>
+          <FormGroup>
+            <Label>
+              Toppings:
+              <label for="pepperoni">Pepperoni </label>
+              <input
+                type="checkbox"
+                value="pepperoni"
+                checked={values.pepperoni}
                 onChange={onChange}
               />
-            </StyledLabel>
-          </div>
-          <div className="submit">
-            <button disabled={disabled}>Add to order</button>
-          </div>
-        </StyledInputs>
+              <label for="extraChesse">Extra Cheese </label>
+              <input
+                type="checkbox"
+                value="extraCheese"
+                checked={values.extraCheese}
+                onChange={onChange}
+              />
+              <label for="onions">Onions </label>
+              <input
+                type="checkbox"
+                value="onions"
+                checked={values.onions}
+                onChange={onChange}
+              />
+              <label for="greenPeppers">Green Peppers </label>
+              <input
+                type="checkbox"
+                value="greenPeppers"
+                checked={values.greenPeppers}
+                onChange={onChange}
+              />
+              <label for="blackOlives">Black Olives </label>
+              <input
+                type="checkbox"
+                value="blackOlives"
+                checked={values.blackOlives}
+                onChange={onChange}
+              />
+              <label for="mushrooms">Mushrooms </label>
+              <input
+                type="checkbox"
+                value="mushrooms"
+                checked={values.mushrooms}
+                onChange={onChange}
+              />
+            </Label>
+          </FormGroup>
+          <FormGroup>
+            <Label for="instructions" sm={1}>
+              Special Instruction
+            </Label>
+
+            <Input
+              type="text"
+              name="instructions"
+              value={values.instructions}
+              onChange={onChange}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Col sm={{ size: 10, offset: 2 }}>
+              <Button id="submitBtn" disabled={disabled}>
+                Add to order
+              </Button>
+            </Col>
+          </FormGroup>
+        </Form>
       </form>
     </div>
   );
